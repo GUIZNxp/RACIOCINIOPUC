@@ -99,35 +99,35 @@ df.plot(kind = 'scatter', x = 'Projeto1', y = 'Projeto2', color='darkgreen', mar
 st.pyplot(fig)
 
 with st.expander('mostrar texto'):
- """6) Crie um gráfico de linha que mostre a evolução dos valores dos projetos ao longo do tempo. (Peso: 2,0)
-
-Dicas:
-- Antes de plotar, deve criar uma nova variável `Data` que surgirá da concatenação de `ano` e `mês`. Para isto pode utilizar a função to_datetime: `pd.to_datetime(dict(year=df["ano"], month=df["mes"], day=1))`
-- Depois, ordene a df utilizando a nova variável `Data`, utilizando `sort_values()`
-- Para conseguir apresentar mais de uma variável (todos os projetos) no mesmo gráfico, uma dica importante está no funcionamento do pacote `matplotlib`
-  - A lógica de plotar gráfico no `matplotlib` segue o caminho das funções figure (inicia ação), plot (monta o gráfico) e show (apresenta). Logo, todos os plot que forem montados entre o figure e o show vão aparecer no mesmo gráfico
-  - `plt.figure(figsize=(10,6))`
-  - `plt.plot()`
-  - `plt.show()`
-"""
-
-df["Data"] = pd.to_datetime(dict(year=df["ano"], month=df["mes"], day=1))
-
-df = df.sort_values("Data")
-st.dataframe(df)
-
-projetos = ["Projeto1", "Projeto2", "Projeto3", "Projeto4", "Projeto5"]
-
-fig, ax = plt.subplots(figsize=(10,6))
-
-for projeto in projetos:
-    ax.plot(df["Data"], df[projeto], marker="o", label=projeto)
-
-ax.set_title("Evolução dos Fluxos de Caixa dos Projetos")
-ax.set_xlabel("Tempo (Ano-Mês)")
-ax.set_ylabel("Valor (R$)")
-ax.legend(title="Projetos")
-ax.grid(True)
-fig.tight_layout()
-
-st.pyplot(fig)
+    """6) Crie um gráfico de linha que mostre a evolução dos valores dos projetos ao longo do tempo. (Peso: 2,0)
+    
+    Dicas:
+    - Antes de plotar, deve criar uma nova variável `Data` que surgirá da concatenação de `ano` e `mês`. Para isto pode utilizar a função to_datetime: `pd.to_datetime(dict(year=df["ano"], month=df["mes"], day=1))`
+    - Depois, ordene a df utilizando a nova variável `Data`, utilizando `sort_values()`
+    - Para conseguir apresentar mais de uma variável (todos os projetos) no mesmo gráfico, uma dica importante está no funcionamento do pacote `matplotlib`
+      - A lógica de plotar gráfico no `matplotlib` segue o caminho das funções figure (inicia ação), plot (monta o gráfico) e show (apresenta). Logo, todos os plot que forem montados entre o figure e o show vão aparecer no mesmo gráfico
+      - `plt.figure(figsize=(10,6))`
+      - `plt.plot()`
+      - `plt.show()`
+    """
+    
+    df["Data"] = pd.to_datetime(dict(year=df["ano"], month=df["mes"], day=1))
+    
+    df = df.sort_values("Data")
+    st.dataframe(df)
+    
+    projetos = ["Projeto1", "Projeto2", "Projeto3", "Projeto4", "Projeto5"]
+    
+    fig, ax = plt.subplots(figsize=(10,6))
+    
+    for projeto in projetos:
+        ax.plot(df["Data"], df[projeto], marker="o", label=projeto)
+    
+    ax.set_title("Evolução dos Fluxos de Caixa dos Projetos")
+    ax.set_xlabel("Tempo (Ano-Mês)")
+    ax.set_ylabel("Valor (R$)")
+    ax.legend(title="Projetos")
+    ax.grid(True)
+    fig.tight_layout()
+    
+    st.pyplot(fig)
